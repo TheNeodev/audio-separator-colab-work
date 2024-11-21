@@ -1,2 +1,5 @@
 # audio-separator-colab-work
-A Demo Of Python Audio separator. Separate an audio file into various stems, using multiple models
+
+
+
+This repository provides a Google Colab-based tool for separating audio tracks into their individual components, such as vocals, instruments, and more. It uses advanced audio separation models to process and isolate elements of audio files.
