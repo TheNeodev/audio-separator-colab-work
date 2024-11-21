@@ -371,7 +371,7 @@ with gr.Blocks(
             roformer_audio = gr.Audio(label="Input Audio", type="filepath")
             with gr.Accordion("separation by link"):
                 url = gr.Textbox(label="your audi/videos link")
-                download_url gr.Button("Download!")
+                download_url = gr.Button("Download!")
                 download_url.click(
                     fn=downloader,
                     inputs=[url],
@@ -395,7 +395,7 @@ with gr.Blocks(
             mdx23c_audio = gr.Audio(label="Input Audio", type="filepath")
             with gr.Accordion("separation by link"):
                 url = gr.Textbox(label="your audi/videos link")
-                download_url gr.Button("Download!")
+                download_url = gr.Button("Download!")
                 download_url.click(
                     fn=downloader,
                     inputs=[url],
@@ -419,7 +419,7 @@ with gr.Blocks(
             mdx_audio = gr.Audio(label="Input Audio", type="filepath")
             with gr.Accordion("separation by link"):
                 url = gr.Textbox(label="your audi/videos link")
-                download_url gr.Button("Download!")
+                download_url = gr.Button("Download!")
                 download_url.click(
                     fn=downloader,
                     inputs=[url],
@@ -445,7 +445,7 @@ with gr.Blocks(
             vr_audio = gr.Audio(label="Input Audio", type="filepath")
             with gr.Accordion("separation by link"):
                 url = gr.Textbox(label="your audi/videos link")
-                download_url gr.Button("Download!")
+                download_url = gr.Button("Download!")
                 download_url.click(
                     fn=downloader,
                     inputs=[url],
