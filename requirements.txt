@@ -1,0 +1,4 @@
+audio-separator[gpu]
+pydub
+yt_dlp
+gradio
