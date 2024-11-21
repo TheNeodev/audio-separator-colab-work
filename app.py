@@ -322,7 +322,7 @@ with gr.Blocks(
     )
 ) as app:
     gr.HTML("<h1> 🎵 Audio-Separator 🎵 </h1>")
-    with gr.Accordion("General settings", open=False):
+    with gr.Tab("General settings", open=False):
         with gr.Group():
             model_file_dir = gr.Textbox(value="/tmp/audio-separator-models/", label="Directory to cache model files", info="The directory where model files are stored.", placeholder="/tmp/audio-separator-models/")
             with gr.Row():
@@ -432,7 +432,11 @@ with gr.Blocks(
     
     with gr.Tab("Credits"):
         gr.Markdown(f"""
-        gradio demo made by [Bebra777228](https://github.com/Bebra777228)\n mod by [blane187gt](https://github.com/blane187gt)\n audio separator by [berevadb](https://github.com/beveradb)
+        gradio demo made by [Bebra777228](https://github.com/Bebra777228)
+        
+        mod by [blane187gt](https://github.com/blane187gt)
+        
+        audio separator by [berevadb](https://github.com/beveradb)
         """)
         
 
