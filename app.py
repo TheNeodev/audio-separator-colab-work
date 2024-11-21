@@ -369,14 +369,14 @@ with gr.Blocks(
                 roformer_pitch_shift = gr.Slider(minimum=-12, maximum=12, step=1, value=0, label="Pitch shift", info="Shift audio pitch by a number of semitones while processing. may improve output for deep/high vocals.")
         with gr.Row():
             roformer_audio = gr.Audio(label="Input Audio", type="filepath")
-            with gr.Accordion("separation by link"):
-                url_ro = gr.Textbox(label="your audi/videos link")
-                download_roformer = gr.Button("Download!")
-                download_roformer.click(
-                    fn=downloader,
-                    inputs=[url_ro],
-                    outputs=[roformer_audio],
-                )
+        with gr.Accordion("separation by link"):
+            url_ro = gr.Textbox(label="your audi/videos link")
+            download_roformer = gr.Button("Download!")
+            download_roformer.click(
+                fn=downloader,
+                inputs=[url_ro],
+                outputs=[roformer_audio],
+            )
                     
         with gr.Row():
             roformer_button = gr.Button("Separate!", variant="primary")
@@ -395,13 +395,14 @@ with gr.Blocks(
                 mdx23c_pitch_shift = gr.Slider(minimum=-12, maximum=12, step=1, value=0, label="Pitch shift", info="Shift audio pitch by a number of semitones while processing. may improve output for deep/high vocals.")
         with gr.Row():
             mdx23c_audio = gr.Audio(label="Input Audio", type="filepath")
-            with gr.Accordion("separation by link"):
-                url_dx = gr.Textbox(label="your audi/videos link")
-                download_dx = gr.Button("Download!")
-                download_dx.click(
-                    fn=downloader,
-                    inputs=[url_dx],
-                    outputs=[mdx23c_audio]
+        with gr.Accordion("separation by link"):
+            url_dx = gr.Textbox(label="your audi/videos link")
+            download_dx = gr.Button("Download!")
+            download_dx.click(
+                fn=downloader,
+                inputs=[url_dx],
+                outputs=[mdx23c_audio],
+            )
         with gr.Row():
             mdx23c_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
@@ -419,13 +420,14 @@ with gr.Blocks(
                 mdx_denoise = gr.Checkbox(value=False, label="Denoise", info="Enable denoising after separation.")
         with gr.Row():
             mdx_audio = gr.Audio(label="Input Audio", type="filepath")
-            with gr.Accordion("separation by link"):
-                url_mdx = gr.Textbox(label="your audi/videos link")
-                download_mdx = gr.Button("Download!")
-                download_mdx.click(
-                    fn=downloader,
-                    inputs=[url_mdx],
-                    outputs=[mdx_audio]
+        with gr.Accordion("separation by link"):
+            url_mdx = gr.Textbox(label="your audi/videos link")
+            download_mdx = gr.Button("Download!")
+            download_mdx.click(
+                fn=downloader,
+                inputs=[url_mdx],
+                outputs=[mdx_audio],
+            )
         with gr.Row():
             mdx_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
@@ -445,13 +447,14 @@ with gr.Blocks(
                 vr_high_end_process = gr.Checkbox(value=False, label="High End Process", info="Mirror the missing frequency range of the output.")
         with gr.Row():
             vr_audio = gr.Audio(label="Input Audio", type="filepath")
-            with gr.Accordion("separation by link"):
-                url = gr.Textbox(label="your audi/videos link")
-                download_url = gr.Button("Download!")
-                download_url.click(
-                    fn=downloader,
-                    inputs=[url],
-                    outputs=[vr_audio]
+        with gr.Accordion("separation by link"):
+            url = gr.Textbox(label="your audi/videos link")
+            download_url = gr.Button("Download!")
+            download_url.click(
+                fn=downloader,
+                inputs=[url],
+                outputs=[vr_audio],
+            )
         with gr.Row():
             vr_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
