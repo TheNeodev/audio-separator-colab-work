@@ -337,16 +337,9 @@ def downloader(url):
 
 
 
-with gr.Blocks(
-    title="🎵 Audio-Separator 🎵",
-    css="footer{display:none !important}",
-    theme=gr.themes.Default(
-        spacing_size="sm",
-        radius_size="lg",
-    )
-) as app:
+with gr.Blocks(title="🎵 Audio-Separator 🎵",css="footer{display:none !important}") as app:
     gr.HTML("<h1> 🎵 Audio-Separator 🎵 </h1>")
-    with gr.Tab("General settings", open=False):
+    with gr.Tab("General settings"):
         with gr.Group():
             model_file_dir = gr.Textbox(value="/tmp/audio-separator-models/", label="Directory to cache model files", info="The directory where model files are stored.", placeholder="/tmp/audio-separator-models/")
             with gr.Row():
