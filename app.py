@@ -1,4 +1,5 @@
 import os
+import yt_dlp
 import torch
 import shutil
 import logging
@@ -313,6 +314,29 @@ def update_stems(model):
     else:
         return gr.update(visible=False)
 
+
+
+def downloader(url):
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'wav',
+            'preferredquality': '192',
+        }],
+        'outtmpl': 'ytdl/%(title)s.%(ext)s',
+    }
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+        info_dict = ydl.extract_info(url, download=True)
+        file_path = ydl.prepare_filename(info_dict).rsplit('.', 1)[0] + '.wav'
+        
+        return file_path
+
+
+
+
 with gr.Blocks(
     title="🎵 Audio-Separator 🎵",
     css="footer{display:none !important}",
@@ -345,6 +369,13 @@ with gr.Blocks(
                 roformer_pitch_shift = gr.Slider(minimum=-12, maximum=12, step=1, value=0, label="Pitch shift", info="Shift audio pitch by a number of semitones while processing. may improve output for deep/high vocals.")
         with gr.Row():
             roformer_audio = gr.Audio(label="Input Audio", type="filepath")
+            with gr.Accordion("separation by link"):
+                url = gr.Textbox(label="your audi/videos link")
+                download_url gr.Button("Download!")
+                download_url.click(
+                    fn=downloader,
+                    inputs=[url],
+                    outputs=[roformer_audio]
         with gr.Row():
             roformer_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
@@ -362,6 +393,13 @@ with gr.Blocks(
                 mdx23c_pitch_shift = gr.Slider(minimum=-12, maximum=12, step=1, value=0, label="Pitch shift", info="Shift audio pitch by a number of semitones while processing. may improve output for deep/high vocals.")
         with gr.Row():
             mdx23c_audio = gr.Audio(label="Input Audio", type="filepath")
+            with gr.Accordion("separation by link"):
+                url = gr.Textbox(label="your audi/videos link")
+                download_url gr.Button("Download!")
+                download_url.click(
+                    fn=downloader,
+                    inputs=[url],
+                    outputs=[mdx23c_audio]
         with gr.Row():
             mdx23c_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
@@ -379,6 +417,13 @@ with gr.Blocks(
                 mdx_denoise = gr.Checkbox(value=False, label="Denoise", info="Enable denoising after separation.")
         with gr.Row():
             mdx_audio = gr.Audio(label="Input Audio", type="filepath")
+            with gr.Accordion("separation by link"):
+                url = gr.Textbox(label="your audi/videos link")
+                download_url gr.Button("Download!")
+                download_url.click(
+                    fn=downloader,
+                    inputs=[url],
+                    outputs=[mdx_audio]
         with gr.Row():
             mdx_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
@@ -398,6 +443,13 @@ with gr.Blocks(
                 vr_high_end_process = gr.Checkbox(value=False, label="High End Process", info="Mirror the missing frequency range of the output.")
         with gr.Row():
             vr_audio = gr.Audio(label="Input Audio", type="filepath")
+            with gr.Accordion("separation by link"):
+                url = gr.Textbox(label="your audi/videos link")
+                download_url gr.Button("Download!")
+                download_url.click(
+                    fn=downloader,
+                    inputs=[url],
+                    outputs=[vr_audio]
         with gr.Row():
             vr_button = gr.Button("Separate!", variant="primary")
         with gr.Row():
