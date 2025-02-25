@@ -68,13 +68,12 @@ def main():
     args = parser.parse_args()
     use_autocast = not args.no_autocast
 
-    print("Starting audio separation using UVR model...")
+    print("Starting audio separation using UVR5!...")
     print(f"Video URL: {args.video_url}")
     print(f"Output Folder: {args.output_folder}")
-    print(f"Model: {args.model}")
+    print(f"Model Used: {args.model}")
     print(f"Output Format: {args.output_format}")
     print(f"Overlap: {args.overlap}")
-    print(f"Use Autocast: {use_autocast}")
     
     # Download the audio
     audio_input = downloader(args.video_url)
