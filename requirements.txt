@@ -1,4 +1,3 @@
-audio-separator[gpu]==0.29.0
-pydub
+audio-separator[gpu]==0.28.5
 yt_dlp
 gradio
