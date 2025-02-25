@@ -4,7 +4,6 @@ import torch
 import shutil
 import logging
 import gradio as gr
-
 from audio_separator.separator import Separator
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
