@@ -317,24 +317,39 @@ def update_stems(model):
 
 
 
-def downloader(url):
+def downloader(url, output_dir="ytdl"):
+
+    os.makedirs(output_dir, exist_ok=True)
+
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'wav',
-            'preferredquality': '192',
+            'preferredquality': '32',
         }],
-        'outtmpl': 'ytdl/%(title)s.%(ext)s',
+        'outtmpl': os.path.join(output_dir, '%(title)s.%(ext)s'),
+        'postprocessor_args': [
+            '-acodec', 'pcm_f32le'
+        ],
     }
 
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-        info_dict = ydl.extract_info(url, download=True)
-        file_path = ydl.prepare_filename(info_dict).rsplit('.', 1)[0] + '.wav'
-        
-        return file_path
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            video_title = info['title']
 
+            ydl.download([url])
+
+            file_path = os.path.join(output_dir, f"{video_title}.wav")
+
+            if os.path.exists(file_path):
+                return os.path.abspath(file_path)
+            else:
+                raise Exception("Something went wrong")
+
+    except Exception as e:
+        raise Exception(f"Error extracting audio with yt-dlp: {str(e)}")
 
 
 
@@ -364,7 +379,7 @@ with gr.Blocks(title="🎵 Audio-Separator 🎵",css="footer{display:none !impor
         with gr.Row():
             roformer_audio = gr.Audio(label="Input Audio", type="filepath")
         with gr.Accordion("separation by link"):
-            url_ro = gr.Textbox(label="your audi/videos link")
+            url_ro = gr.Textbox(label="your audio/videos link")
             download_roformer = gr.Button("Download!")
             download_roformer.click(
                 fn=downloader,
@@ -415,7 +430,7 @@ with gr.Blocks(title="🎵 Audio-Separator 🎵",css="footer{display:none !impor
         with gr.Row():
             mdx_audio = gr.Audio(label="Input Audio", type="filepath")
         with gr.Accordion("separation by link"):
-            url_mdx = gr.Textbox(label="your audi/videos link")
+            url_mdx = gr.Textbox(label="your audio/videos link")
             download_mdx = gr.Button("Download!")
             download_mdx.click(
                 fn=downloader,
@@ -442,7 +457,7 @@ with gr.Blocks(title="🎵 Audio-Separator 🎵",css="footer{display:none !impor
         with gr.Row():
             vr_audio = gr.Audio(label="Input Audio", type="filepath")
         with gr.Accordion("separation by link"):
-            url = gr.Textbox(label="your audi/videos link")
+            url = gr.Textbox(label="your audio/videos link")
             download_url = gr.Button("Download!")
             download_url.click(
                 fn=downloader,
@@ -485,7 +500,7 @@ with gr.Blocks(title="🎵 Audio-Separator 🎵",css="footer{display:none !impor
         gr.Markdown(f"""
         gradio demo made by [Bebra777228](https://github.com/Bebra777228)
         
-        mod by [blane187gt](https://github.com/blane187gt)
+        mod by [NeoDev](https://github.com/TheNeodev)
         
         audio separator by [berevadb](https://github.com/beveradb)
         """)
