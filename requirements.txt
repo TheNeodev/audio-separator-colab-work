@@ -1,5 +1,4 @@
 audio-separator[gpu]==0.30.1
+scipy
+gradio==5.20.1
 yt_dlp
-gradio
-pydantic==2.10.6
-onnxruntime
