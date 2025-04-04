@@ -9,6 +9,8 @@ from audio_separator.separator import Separator
 device = "cuda" if torch.cuda.is_available() else "cpu"
 use_autocast = device == "cuda"
 
+print(f"Device: {device}")
+
 # Model lists
 ROFORMER_MODELS = {
     'BS-Roformer-Viperx-1297.ckpt': 'model_bs_roformer_ep_317_sdr_12.9755.ckpt',
